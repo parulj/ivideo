@@ -514,7 +514,7 @@ html {
 .product-slides-container {
   border:0px solid #ccc;
   height:2.5em;
-  width: 93.48%;
+  width: 100%;
   padding: 0;
   margin: 0;
   overflow: hidden;
@@ -522,6 +522,7 @@ html {
   position: absolute;
   top: 0;
   z-index: 100;
+  margin-left: -6;
 }
 
 .product-slides {
@@ -589,9 +590,10 @@ html {
   height: 454px;
   position: relative;
   overflow: hidden;
-  border: solid 1px #c0c0c0;
+  border: none;
   display:none;
   font-size: 0.9em;   
+  margin-left: -4;   
 }
 .tweet_list {
   list-style-type: none;

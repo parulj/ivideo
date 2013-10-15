@@ -174,8 +174,8 @@ LinearAd.prototype.createAndAddDivs = function(outerDiv) {
 	
 	'<div class="threesixty car" style="border:none"><div class="spinner"><span></span></div><ol class="threesixty_images"></ol></div>'+
 	
-	'<div class="playlist" style="height: '+height+';"><div class="clear"></div>'+
-	'<div class="viewport" style="height: '+height+';">'+
+	'<div class="playlist" style="width:47;height:'+height+';"><div class="clear"></div>'+
+	'<div class="viewport" style="width:47;height:'+height+';">'+
 	'<ol class="playlist-items"><li class="playlist-item">'+
 	'<img class="tooltip" src="img/tumblr.png" onclick="javascript:showTumblr()" style="opacity: 1;">'+
 	'</li><li class="playlist-item">'+
@@ -202,7 +202,7 @@ function hideOthers(showLayer) {
 }
 
 function downloadBrochure () {
-	window.open("/downloads/honda-civic-sedan-brochure.pdf");
+	window.open("http://www.hondacarindia.com/download/Civic-Brochure.pdf");
 }
 
 function bookTestDrive() {

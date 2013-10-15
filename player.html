@@ -19,20 +19,31 @@
 	}
 	
 	function loadTheAd() {
+		//get the ad code vast xml from ad server and extract the js file from MediaFile element
+		var ad_js_file = "myad.js";
 		
+		//create an IFrame and add a div inside for the overlay for interaction
 		iframe = document.createElement('iframe'); 
 		iframe.id = "adloaderframe"; 
 		myAdDiv = document.getElementById('overlayDiv');
 		myAdDiv.appendChild(iframe);
-		
-		var ad_js_file = "myad.js";
 		iframe.contentWindow.document.write('<script src="' + ad_js_file + '"></scr' + 'ipt>'); 
-		
 		iframe.contentWindow.document.write ('<div id="videoAdLayer" style="width: 850; height:490;">');
 
+		//Add a listener to resume the video ad when Ad has ended
+		var videoSlot = document.getElementById('videoElement');	
+		videoSlot.addEventListener('ended', function () {
+		        if(adrunning) {
+		        	videoSlot.removeEventListener('ended');
+		        	resumeVideoContent();
+		            adrunning=false;
+				}
+		    }, false);
+		
+		//add style to the iframe
 		iframe = document.getElementById('adloaderframe');
 		iframe.style.height = '480px';
-		iframe.style.width = '840px';
+		iframe.style.width = '850px';
 		iframe.style.marginTop = '-485px';
 		iframe.style.position = 'relative';
 		iframe.style.border = 'none';
@@ -97,11 +108,11 @@
 		//alert(videoCurrentTime + ' ' + videoContentUrl);
 	}
 	
-	function togglePlay() {
+	/*function togglePlay() {
 		var togglePlayButton = document.getElementById('togglePlay');
 		var videoSlot = document.getElementById('videoElement');
-		if(togglePlayButton.value == "PlayVideo") {
-			togglePlayButton.value = "PauseVideo";
+		if(togglePlayButton.value == "PlayVideoContent") {
+			togglePlayButton.value = "PauseVideoContent";
 			videoSlot.addEventListener('ended', function () {
 			        if(adrunning) {
 			        	videoSlot.removeEventListener('ended');
@@ -115,19 +126,19 @@
 			togglePlayButton.value = "PlayVideo";
 			videoSlot.pause();			
 		}
-	}
+	}*/
   </script>
 </head>
-<body onLoad="togglePlay();loadTheAd()">
-<input type="hidden" id = "togglePlay" value="PlayVideo" onclick="javascript:togglePlay()">
+<body onLoad="loadTheAd()">
 <div id="playerDiv" width="850px" height="490px">
-<video id="videoElement" src="big_buck_bunny.mp4"  width="850" height="490" autoplay="true" style="position:relative;">
+<video id="videoElement" src="http://video.webmfiles.org/big-buck-bunny_trailer.webm"  width="850" height="490" autoplay="true" style="position:relative;">
    <!--<source src="http://video.webmfiles.org/big-buck-bunny_trailer.webm" type="video/webm">-->
   </video>
 </div>
 
 <div id="overlayDiv" width="850px" height="490px">
 </div>
+<!--<input type="hidden" id = "togglePlay" value="PlayVideoContent" onclick="javascript:togglePlay()">-->
 <input type="button" value="StartAd" onclick="javascript:startProcess()">
 
 </body>

@@ -127,14 +127,23 @@
 			videoSlot.pause();			
 		}
 	}*/
+	function toggleVideoContentPlay() {
+		var videoSlot = document.getElementById('videoElement');
+		var PlayPauseButton = document.getElementById('playpause');
+		if(videoSlot.paused) {
+			PlayPauseButton.value = "Pause VideoContent";
+			videoSlot.play();
+		} else {
+			PlayPauseButton.value = "Play VideoContent";
+			videoSlot.pause();
+		}
+	}
   </script>
 </head>
 <body onLoad="loadTheAd()">
 <div id="playerDiv" width="850px" height="490px">
-<video id="videoElement" width="850" height="490" autoplay="true" style="position:relative;">
-   <source src="http://video.webmfiles.org/big-buck-bunny_trailer.webm" type="video/webm">
-   <source src="big_buck_bunny.mp4" type="video/mp4">
-	
+<video id="videoElement" src="big_buck_bunny.mp4" width="850" height="490" style="position:relative;">
+   <!--<source src="big_buck_bunny.mp4" type="video/mp4">-->
   </video>
 </div>
 
@@ -142,6 +151,7 @@
 </div>
 <!--<input type="hidden" id = "togglePlay" value="PlayVideoContent" onclick="javascript:togglePlay()">-->
 <input type="button" value="StartAd" onclick="javascript:startProcess()">
+<input type="button" id="playpause" value="Play VideoContent" onclick="javascript:toggleVideoContentPlay()">
 
 </body>
 </html>

@@ -1,0 +1,134 @@
+<html>
+<head>
+  <title>Interactive Video Ad</title>
+  <script src="js/jquery-1.9.1.min.js"></script>
+  <script>
+    var VPAIDCreative;
+ 	var environmentVars = new Object();
+	var videoContentUrl;
+	var videoCurrentTime = 0;
+	var adrunning = false;
+	
+	function startProcess() {
+		markVideoContent();
+	    //loadTheAd();
+	    initTheAd();
+		startTheAd();
+		//alert("will restart video content now");
+		//resumeVideoContent();
+	}
+	
+	function loadTheAd() {
+		
+		iframe = document.createElement('iframe'); 
+		iframe.id = "adloaderframe"; 
+		myAdDiv = document.getElementById('overlayDiv');
+		myAdDiv.appendChild(iframe);
+		
+		var ad_js_file = "myad.js";
+		iframe.contentWindow.document.write('<script src="' + ad_js_file + '"></scr' + 'ipt>'); 
+		
+		iframe.contentWindow.document.write ('<div id="videoAdLayer" style="width: 850; height:490;">');
+
+		iframe = document.getElementById('adloaderframe');
+		iframe.style.height = '480px';
+		iframe.style.width = '840px';
+		iframe.style.marginTop = '-485px';
+		iframe.style.position = 'relative';
+		iframe.style.border = 'none';
+		//iframe.style.overflow-y = 'hidden';
+		//iframe.style.overflow-x = 'hidden';
+		
+		//VPAIDCreative = getVPAIDAd();
+	}
+	
+	function initTheAd() {
+		iframe = document.getElementById('adloaderframe');
+		var fn = iframe.contentWindow['getVPAIDAd']; 
+		
+		if (fn && typeof fn == 'function') {
+			VPAIDCreative = fn(); 
+		}
+		
+		var slot = iframe.contentDocument.getElementById('videoAdLayer');
+		environmentVars.slot = slot; 
+		environmentVars.videoSlot = document.getElementById('videoElement'); 
+		environmentVars.videoSlotCanAutoPlay = true;
+		
+		VPAIDCreative.initAd(slot.style.width, slot.style.height, "normal", null, null, 
+		environmentVars);
+	}
+	
+	function startTheAd() {
+		adrunning = true;
+		VPAIDCreative.startAd();
+	}
+	
+	function playVideoContent() {
+		videoSlot = document.getElementById('videoElement');
+		videoSlot.play();
+	}
+	
+	function markVideoContent() {
+		videoSlot = document.getElementById('videoElement');
+		videoSlot.pause();
+		videoContentUrl = videoSlot.src;
+		videoCurrentTime = videoSlot.currentTime;
+	}
+
+	function resumeVideoContent() {
+		iframe = document.getElementById('adloaderframe');
+		adDiv = iframe.contentDocument.getElementById('videoAdLayer');
+		adDiv.parentNode.removeChild(adDiv);
+		
+		videoSlot = document.getElementById('videoElement');
+		videoSlot.src = videoContentUrl;
+		
+		videoSlot.addEventListener('loadeddata', function() {
+			    if(adrunning) {
+					videoSlot.currentTime = 0;
+				} else {
+					videoSlot.currentTime = videoCurrentTime;
+				}
+				videoSlot.play();
+			});
+			
+		videoSlot.load();
+		//alert(videoCurrentTime + ' ' + videoContentUrl);
+	}
+	
+	function togglePlay() {
+		var togglePlayButton = document.getElementById('togglePlay');
+		var videoSlot = document.getElementById('videoElement');
+		if(togglePlayButton.value == "PlayVideo") {
+			togglePlayButton.value = "PauseVideo";
+			videoSlot.addEventListener('ended', function () {
+			        if(adrunning) {
+			        	videoSlot.removeEventListener('ended');
+			        	resumeVideoContent();
+			            adrunning=false;
+					}
+			    }, false);
+			
+			videoSlot.play();
+		} else {
+			togglePlayButton.value = "PlayVideo";
+			videoSlot.pause();			
+		}
+	}
+  </script>
+</head>
+<body onLoad="togglePlay();loadTheAd()">
+<input type="hidden" id = "togglePlay" value="PlayVideo" onclick="javascript:togglePlay()">
+<div id="playerDiv" width="850px" height="490px">
+<video id="videoElement" src="big_buck_bunny.mp4"  width="850" height="490" autoplay="true" style="position:relative;">
+   <!--<source src="http://video.webmfiles.org/big-buck-bunny_trailer.webm" type="video/webm">-->
+  </video>
+</div>
+
+<div id="overlayDiv" width="850px" height="490px">
+</div>
+<input type="button" value="StartAd" onclick="javascript:startProcess()">
+
+</body>
+</html>

@@ -3,6 +3,7 @@
   overflow: hidden;
   border: solid 1px #c0c0c0;
   display: none;
+  background-color: #fff;
 }
 #videoAdLayer .threesixty .spinner {
   width: 60px;

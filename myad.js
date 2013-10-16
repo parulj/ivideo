@@ -169,8 +169,8 @@ LinearAd.prototype.createAndAddDivs = function(outerDiv) {
 	'<div class="tweet"></div>'+
 	
 	'<div class="interiors" id="right"><img src="img/honda/gal_lg1.jpg" width="690px" height="430px">'+
-	'<img src="img/honda/gal_lg2.jpg" width="'+width+'" height='+height+'><img src="img/honda/gal_lg3.jpg" width="690px" height="430px">'+
-	'<img src="img/honda/gal_lg4.jpg" width="'+width+'" height='+height+'></div>'+
+	'<img src="img/honda/gal_lg2.jpg" width="690px" height="430px"><img src="img/honda/gal_lg3.jpg" width="690px" height="430px">'+
+	'<img src="img/honda/gal_lg4.jpg" width="690px" height="430px"></div>'+
 	
 	'<div class="threesixty car" style="border:none"><div class="spinner"><span></span></div><ol class="threesixty_images"></ol></div>'+
 	
@@ -277,8 +277,8 @@ function initThreeSixty() {
         imagePath:'img/car/', // path of the image assets
         filePrefix: '', // file prefix if any
         ext: '.png', // extention for the assets
-        height: 454,
-        width: 848,
+        height: 480,
+        width: 850,
         navigation: true
     });
   }

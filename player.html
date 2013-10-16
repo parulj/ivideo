@@ -27,8 +27,9 @@
 		iframe.id = "adloaderframe"; 
 		myAdDiv = document.getElementById('overlayDiv');
 		myAdDiv.appendChild(iframe);
+
 		iframe.contentWindow.document.write('<script src="' + ad_js_file + '"></scr' + 'ipt>'); 
-		iframe.contentWindow.document.write ('<div id="videoAdLayer" style="width: 850; height:490;">');
+		iframe.contentWindow.document.write ('<div id="videoAdLayer" style="width: 850; height:480;">');
 
 		//Add a listener to resume the video ad when Ad has ended
 		var videoSlot = document.getElementById('videoElement');	
@@ -44,9 +45,8 @@
 		iframe = document.getElementById('adloaderframe');
 		iframe.style.height = '480px';
 		iframe.style.width = '850px';
-		iframe.style.marginTop = '-485px';
-		iframe.style.position = 'relative';
 		iframe.style.border = 'none';
+		
 		//iframe.style.overflow-y = 'hidden';
 		//iframe.style.overflow-x = 'hidden';
 		
@@ -139,15 +139,38 @@
 		}
 	}
   </script>
+  <style type="text/css">
+    body {
+      margin:0;
+    }
+
+    #playerDiv {
+      width:850px;
+      height:490px;
+    }
+
+    #playerDiv video {
+    	height: 490px;
+        width: 850px;
+    }
+
+    #overlayDiv {
+      position: absolute;
+      top:15px;
+      width:850px;
+      height:490px;
+    }
+
+    #mainContainer {
+    	padding: 10px;
+    }
+
+  </style>
 </head>
 <body onLoad="loadTheAd()">
-<div id="playerDiv" width="850px" height="490px">
-<video id="videoElement" src="big_buck_bunny.mp4" width="850" height="490" style="position:relative;">
-   <!--<source src="big_buck_bunny.mp4" type="video/mp4">-->
-  </video>
-</div>
-
-<div id="overlayDiv" width="850px" height="490px">
+<div id="mainContainer">
+<div id="playerDiv"><video id="videoElement" src="big_buck_bunny.mp4"></video></div>
+<div id="overlayDiv"></div>
 </div>
 <!--<input type="hidden" id = "togglePlay" value="PlayVideoContent" onclick="javascript:togglePlay()">-->
 <input type="button" value="StartAd" onclick="javascript:startProcess()">

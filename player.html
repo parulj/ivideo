@@ -131,10 +131,10 @@
 		var videoSlot = document.getElementById('videoElement');
 		var PlayPauseButton = document.getElementById('playpause');
 		if(videoSlot.paused) {
-			PlayPauseButton.value = "Pause VideoContent";
+			PlayPauseButton.value = "Pause";
 			videoSlot.play();
 		} else {
-			PlayPauseButton.value = "Play VideoContent";
+			PlayPauseButton.value = "Play";
 			videoSlot.pause();
 		}
 	}
@@ -173,8 +173,8 @@
 <div id="overlayDiv"></div>
 </div>
 <!--<input type="hidden" id = "togglePlay" value="PlayVideoContent" onclick="javascript:togglePlay()">-->
-<input type="button" value="StartAd" onclick="javascript:startProcess()">
-<input type="button" id="playpause" value="Play VideoContent" onclick="javascript:toggleVideoContentPlay()">
+<input type="button" id="playpause" value="Play" onclick="javascript:toggleVideoContentPlay()" style="margin-left:350">
+<input type="button" value="StartAd" onclick="javascript:startProcess();">
 
 </body>
 </html>

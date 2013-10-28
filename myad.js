@@ -175,13 +175,13 @@ LinearAd.prototype.createAndAddDivs = function(outerDiv) {
 	'<div class="threesixty car" style="border:none"><div class="spinner"><span></span></div><ol class="threesixty_images"></ol></div>'+
 	
 	'<div class="playlist" style="width:47;height:'+height+';"><div class="clear"></div>'+
-	'<div class="viewport" style="width:47;height:'+height+';">'+
+	'<div class="viewport" style="width:47;height:'+height/2+';">'+
 	'<ol class="playlist-items"><li class="playlist-item">'+
 	'<img class="tooltip" src="img/tumblr.png" onclick="javascript:showTumblr()" style="opacity: 1;">'+
 	'</li><li class="playlist-item">'+
 	'<img class="tooltip" src="img/facebook.png" onclick="javascript:showFacebook()" style="opacity: 1;">'+
 	'</li><li class="playlist-item">'+
-	'<img class="tooltip" src="img/twitter.png" onclick="javascript:showTwitter()" style="opacity: 1;">'+
+	'<img class="tooltip" src="img/twitter.png" style="opacity: 1;">'+
 	'</li><li class="playlist-item">'+
 	'<img class="tooltip customView" src="img/360degree-icon.png" onclick="javascript:show360()" style="opacity: 1;">'+
 	'</li><li class="playlist-item">'+

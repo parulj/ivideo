@@ -130,7 +130,7 @@ LinearAd.prototype.createAndAddDivs = function(outerDiv) {
 	height = outerDiv.style.height;
 	width = outerDiv.style.width;
 	var divNodes = 
-	'<div class="product-slides-container" ><ul class="product-slides">'+
+	'<div id="product_slides_container" class="product-slides-container" ><ul class="product-slides">'+
 	'<li class="slide-item"><a href="#" onclick="javascript:downloadBrochure()">Brochure</a></li>'+
 	'<li class="slide-item"><a href="#" onclick="javascript:bookTestDrive()">Test Drive</a></li>'+
 	'<li class="slide-item"><a href="#" onclick="javascript:locateDealers()">Dealers</a></li>'+
@@ -202,7 +202,14 @@ function hideOthers(showLayer) {
 }
 
 function downloadBrochure () {
-	window.open("http://www.hondacarindia.com/download/Civic-Brochure.pdf");
+	win2 = window.open("http://www.hondacarindia.com/download/Civic-Brochure.pdf", '_blank');
+	//alert(window);
+	//alert(win2);
+	//alert(win2.opener.document.getElementById('product_slides_container'));
+	//window.blur();
+	//window.focus();
+//	win2.opener.document.getElementById('product_slides_container').focus();
+	document.getElementById('product_slides_container').class = 'product-slides-container';
 }
 
 function bookTestDrive() {

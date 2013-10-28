@@ -11,14 +11,16 @@
 	
 	function startProcess() {
 		markVideoContent();
-	    //loadTheAd();
 	    initTheAd();
 		startTheAd();
-		//alert("will restart video content now");
-		//resumeVideoContent();
 	}
 	
 	function loadTheAd() {
+		//$("#playpause").click();
+		var evt = document.createEvent("HTMLEvents");
+		evt.initEvent("click", true, true); 
+		document.getElementById("playpause").dispatchEvent(evt);
+		
 		//get the ad code vast xml from ad server and extract the js file from MediaFile element
 		var ad_js_file = "myad.js";
 		
@@ -40,6 +42,16 @@
 		            adrunning=false;
 				}
 		    }, false);
+
+			videoSlot.addEventListener('play', function () {
+					var PlayPauseButton = document.getElementById('playpause');
+					PlayPauseButton.value = "Pause";
+			    }, false);
+
+				videoSlot.addEventListener('pause', function () {
+						var PlayPauseButton = document.getElementById('playpause');
+						PlayPauseButton.value = "Play";
+				    }, false);
 		
 		//add style to the iframe
 		iframe = document.getElementById('adloaderframe');
@@ -129,12 +141,12 @@
 	}*/
 	function toggleVideoContentPlay() {
 		var videoSlot = document.getElementById('videoElement');
-		var PlayPauseButton = document.getElementById('playpause');
+		//var PlayPauseButton = document.getElementById('playpause');
 		if(videoSlot.paused) {
-			PlayPauseButton.value = "Pause";
+			//PlayPauseButton.value = "Pause";
 			videoSlot.play();
 		} else {
-			PlayPauseButton.value = "Play";
+			//PlayPauseButton.value = "Play";
 			videoSlot.pause();
 		}
 	}
@@ -174,7 +186,7 @@
 </div>
 <!--<input type="hidden" id = "togglePlay" value="PlayVideoContent" onclick="javascript:togglePlay()">-->
 <input type="button" id="playpause" value="Play" onclick="javascript:toggleVideoContentPlay()" style="margin-left:350">
-<input type="button" value="StartAd" onclick="javascript:startProcess();">
+<input type="button" value="StartAd" onclick="javascript:startProcess();" >
 
 </body>
 </html>

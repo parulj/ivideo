@@ -132,9 +132,10 @@ LinearAd.prototype.createAndAddDivs = function(outerDiv) {
 	var divNodes = 
 	'<div id="product_slides_container" class="product-slides-container" ><ul class="product-slides">'+
 	'<li class="slide-item"><a href="#" onclick="javascript:downloadBrochure()">Brochure</a></li>'+
-	'<li class="slide-item"><a href="#" onclick="javascript:bookTestDrive()">Test Drive</a></li>'+
 	'<li class="slide-item"><a href="#" onclick="javascript:locateDealers()">Dealers</a></li>'+
-	'<li class="slide-item"><a href="#" onclick="javascript:showReviews()">Reviews</a></li></ul></div>'+
+	'<li class="slide-item"><a href="#" onclick="javascript:showReviews()">Reviews</a></li>' +
+	'<li class="slide-item"><a href="#" onclick="javascript:bookTestDrive()">Test Drive</a></li>'+
+	'</ul></div>'+
 	'<div class="testDrive" style="border:none"><div class="testDriveFormContainer">'+
 	'<div class="testDriveHeading">Schedule Test Drive</div><div>'+
 	'<label>First Name:</label> <input type="text"></div><div><label>Last Name:</label> '+
